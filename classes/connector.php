@@ -42,6 +42,7 @@ class Connector {
 		);                                                                                                                   
 
 		$response = curl_exec($ch);
+		
 		curl_close($ch);
 		//Split the HEADERS and BODY 
 		list($h, $EALOGIN) = explode("\r\n\r\n", $response, 2);
@@ -84,7 +85,7 @@ class Connector {
 		
 		//Get machine type
 		$d = json_decode($EAACCOUNT);
-		$machine = $d->shardInfo[1]->customdata1[1];
+		$machine = $d->shardInfo[0]->customdata1[0];
 		
 		//display the variables we've got
 		//echo "machine: ".$machine."<br />";
