@@ -4,3 +4,8 @@
 
 After noticing an amazing Wrapper created by [Mousey](https://github.com/mousey/FIFA13-Ultimate-Team-Search/)
 i decided to use his code as a wrapper for this project, Most credits go to [Mousey](https://github.com/mousey/FIFA13-Ultimate-Team-Search/) for such amazing coding.
+
+# How to use this Application
+
+* Edit /secure/config.php with your EA Details
+* Run/view the sample.php file provided for testing purposes
