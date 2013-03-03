@@ -93,7 +93,7 @@ class Connector {
 		unset($EAACCOUNT, $d, $ch, $cookie_string);
 		
 		//Having gotten the data from the SHARD URL here are the 3 remaining EA URLs we will use
-		$account= "http://www.ea.com/p/fut/a/" . $machine . "/l/". $ulocal ."/s/p/ut/game/fifa13/user/accountinfo?timestamp=". $time;
+		$account= "http://www.ea.com/p/fut/a/" . $machine . "/l/". $ulocal ."/s/p/ut/game/fifa13/user/accountinfo?timestamp=".$time;
 		$auth	= "http://www.ea.com/p/fut/a/" . $machine . "/l/". $ulocal ."/s/p/ut/auth";
 		$quest	= "http://www.ea.com/p/fut/a/" . $machine . "/l/". $ulocal ."/s/p/ut/game/fifa13/phishing/validate";
 		
