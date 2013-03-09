@@ -117,12 +117,12 @@ class Functionor {
 	}
 	
 	//returns a JSON file with an array of items in your tradepile
-	public function tradepile(){
+	public function credits($EASW_KEY, $EASF_SESS, $PHISHKEY, $XSID){
 		global $f;
 		$url = "https://utas.fut.ea.com/ut/game/fifa13/tradepile";
 		
 		//Set the cookie data
-		$cookie_string = $_SESSION['EASW_KEY']."; ".$_SESSION['EASF_SESS'] ."; ".$_SESSION['PHISHKEY'];                                                                                       
+		$cookie_string = $EASW_KEY."; ".$EASF_SESS ."; ".$PHISHKEY;                                                                                    
 		//Setup cURL HTTP request
 		$ch = curl_init($url);                                                                      
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
