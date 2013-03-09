@@ -118,6 +118,7 @@ class Functionor {
 	
 	//returns a JSON file with an array of items in your tradepile
 	public function tradepile(){
+		global $f;
 		$url = "https://utas.fut.ea.com/ut/game/fifa13/tradepile";
 		
 		//Set the cookie data
@@ -132,12 +133,17 @@ class Functionor {
 		
 		//Contains the JSON file returned from EA
 		$EAPILE = curl_exec($ch);
+		$decoded = json_decode($EAPILE);
+		$COUNT = count($decoded->auctionInfo);
 		
 		curl_close($ch);
 		
 		unset ($ch, $cookie_string);
 		
-		return $EAPILE;
+		//return array for simple access to JSON response and total results count
+		$array = array('JSON' => $EAPILE, 'COUNT' => $COUNT);
+		
+		return $array;
 	}
 
 	//Return the type of card we have
