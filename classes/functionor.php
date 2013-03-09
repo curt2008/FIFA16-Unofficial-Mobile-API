@@ -171,5 +171,9 @@ class Functionor {
 		//Return the Card Type
 		return $type;
 	}
+	
+	public function eatax($bought, $sold) {
+		return $sold * 0.95 - $bought;
+	}
 }
 ?>
