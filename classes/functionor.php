@@ -116,6 +116,7 @@ class Functionor {
 		return $EACREDITS;
 	}
 	
+	//returns a JSON file with an array of items in your tradepile
 	public function tradepile(){
 		$url = "https://utas.fut.ea.com/ut/game/fifa13/tradepile";
 		
@@ -172,6 +173,7 @@ class Functionor {
 		return $type;
 	}
 	
+	//pass the BIN and BIN sold/selling to work out profit
 	public function eatax($bought, $sold) {
 		return $sold * 0.95 - $bought;
 	}
