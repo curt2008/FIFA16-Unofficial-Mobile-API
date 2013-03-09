@@ -117,7 +117,7 @@ class Functionor {
 	}
 	
 	//returns a JSON file with an array of items in your tradepile
-	public function credits($EASW_KEY, $EASF_SESS, $PHISHKEY, $XSID){
+	public function tradepile($EASW_KEY, $EASF_SESS, $PHISHKEY, $XSID){
 		global $f;
 		$url = "https://utas.fut.ea.com/ut/game/fifa13/tradepile";
 		
@@ -129,7 +129,7 @@ class Functionor {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
 		curl_setopt($ch, CURLOPT_COOKIE, $cookie_string); 
 		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'x-http-method-override: GET', $_SESSION['XSID']));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'x-http-method-override: GET', $XSID));
 		
 		//Contains the JSON file returned from EA
 		$EAPILE = curl_exec($ch);
