@@ -2,8 +2,8 @@
 
 # Fifa Ultimate Team 13 PHP Application
 
-After noticing an amazing Wrapper created by [Mousey](https://github.com/mousey/FIFA13-Ultimate-Team-Search/)
-i decided to use his classes for this project, Most credits go to [Mousey](https://github.com/mousey/FIFA13-Ultimate-Team-Search/) for such amazing coding.
+After noticing an amazing wrapper created by [Mousey](https://github.com/mousey/FIFA13-Ultimate-Team-Search/)
+i decided to grab some of his code and use it for this project, Most credits go to [Mousey](https://github.com/mousey/FIFA13-Ultimate-Team-Search/) for such amazing coding.
 
 # How to use this Application
 
