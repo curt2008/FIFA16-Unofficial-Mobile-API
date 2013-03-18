@@ -19,27 +19,34 @@ class Tradeor {
 	//$value is the value in FIFA coins that you want to BID
 	public function bid($trade, $value){
 		//URL to bid on trade items
+		$bidurl = "https://utas.fut.ea.com/ut/game/fifa13/trade/". $trade ."/bid";
+		
+		//JSON data to send as a POST item
 		$data = array("bid" => $value);
-    		$data_string = json_encode($data);
-    
-    		$opts = array(
-     			'http'=>array(
-     			'method'=>"POST",
-     			'content'=>$data_string,
-     			'header'=>"Content-Type: application/json\r\n".
-     			"User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17\r\n".
-     			"Referer:http://www.ea.com/uk/football/login?redirectUrl=http://www.ea.com/uk/football/fifa-ultimate-team\r\n".
-     			"Cookie: ".$this->EASW_KEY."; ".$this->EASF_SESS ."; ".$this->PHISHKEY."\r\n".
-     			"x-http-method-override:PUT\r\n".$this->XSID
-     			)
-    		);
-    
-    		$context = stream_context_create($opts);
-    		$bidurl = "https://utas.s2.fut.ea.com/ut/game/fifa13/trade/$trade/bid";
-     		$RESULTS = file_get_contents($bidurl, false, $context);
-     		
-     		return $RESULTS;
-
+		$data_string = json_encode($data); 
+		//Set the cookie data
+		$cookie_string = $this->EASW_KEY ."; ".$this->EASF_SESS ."; ".$this->PHISHKEY;                                                                       
+		//Setup cURL HTTP request
+		$ch = curl_init($bidurl);                                                                      
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+		curl_setopt($ch, CURLOPT_COOKIE, $cookie_string); 
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+			'Content-Type: application/json',                                                                                
+			'x-http-method-override: PUT',
+			'Content-Length: ' . strlen($data_string),
+			$this->XSID)                                                                       
+		);
+		
+		//Contains the JSON file returned from EA
+		$EABID = curl_exec($ch);
+		curl_close($ch);
+		
+		unset ($ch, $cookie_string, $data_string, $data, $trade, $bidurl, $value);
+		
+		return $EABID;
 	}
 	
 	public function trade($trade){
