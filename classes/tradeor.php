@@ -133,5 +133,37 @@ class Tradeor {
 		
 		return $EAFUNC;
 	}
+	
+	public function listItem($item, $startBid, $BIN, $duration){
+		//URL for the auction house
+		$url = "https://utas.fut.ea.com/ut/game/fifa13/auctionhouse";
+		
+		//JSON data to send as a POST item
+		$data = array("duration" => $duration, "id" => $item, "buyNowPrice" => $BIN, "startingBid" => $startBid);
+		$data_string = json_encode($data); 
+		//Set the cookie data
+		$cookie_string = $this->EASW_KEY ."; ".$this->EASF_SESS ."; ".$this->PHISHKEY;                                                                       
+		//Setup cURL HTTP request
+		$ch = curl_init($url);                                                                      
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+		curl_setopt($ch, CURLOPT_COOKIE, $cookie_string); 
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+			'Content-Type: application/json',                                                                                
+			'x-http-method-override: POST',
+			'Content-Length: ' . strlen($data_string),
+			$this->XSID)                                                                       
+		);
+		
+		//Contains the JSON file returned from EA
+		$EAFUNC = curl_exec($ch);
+		curl_close($ch);
+		
+		unset ($ch, $cookie_string, $data_string, $data, $url, $item, $startBid, $BIN, $duration);
+		
+		return $EAFUNC;
+	}
 }
 ?>
