@@ -1,11 +1,4 @@
-<?php  
-/**
-* @llygoden
-* @author - Rob McGhee
-* @URL - www.robmcghee.com
-* @date - 12/10/12
-* @version - 1.0
-**/
+<?php
 
 class EAHashor {
 
