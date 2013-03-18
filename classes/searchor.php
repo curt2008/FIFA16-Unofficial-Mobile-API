@@ -1,11 +1,5 @@
-<?PHP
-/**
-* @llygoden
-* @author - Rob McGhee
-* @URL - www.robmcghee.com
-* @date - 24/09/12
-* @version - 1.0
-**/
+<?php
+
 class Searchor {
 	
 	private $EASW_KEY;
