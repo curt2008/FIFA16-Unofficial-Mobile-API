@@ -74,5 +74,37 @@ class Tradeor {
 		
 		return $EATRADE;
 	}
+	
+	public function moveCard($item, $pile){
+		//URL to view an item 
+		$url = "https://utas.fut.ea.com/ut/game/fifa13/item";
+		
+		//JSON data to send as a POST item
+		$data = array("id" => $item, "pile" => $pile);
+		$data_string = json_encode($data); 
+		//Set the cookie data
+		$cookie_string = $this->EASW_KEY ."; ".$this->EASF_SESS ."; ".$this->PHISHKEY;                                                                       
+		//Setup cURL HTTP request
+		$ch = curl_init($url);                                                                      
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string); 
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+		curl_setopt($ch, CURLOPT_COOKIE, $cookie_string); 
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+			'Content-Type: application/json',                                                                                
+			'x-http-method-override: PUT',
+			'Content-Length: ' . strlen($data_string),
+			$this->XSID)                                                                       
+		);
+		
+		//Contains the JSON file returned from EA
+		$EAFUNC = curl_exec($ch);
+		curl_close($ch);
+		
+		unset ($ch, $cookie_string, $data_string, $data, $trade, $url, $value);
+		
+		return $EAFUNC;
+	}
 }
 ?>
