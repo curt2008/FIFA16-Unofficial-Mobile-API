@@ -1,11 +1,5 @@
-<?PHP
-/**
-* @llygoden
-* @author - Rob McGhee
-* @URL - www.robmcghee.com
-* @date - 24/09/12
-* @version - 1.0
-**/
+<?php
+
 class Tradeor {
 	
 	private $EASW_KEY;
@@ -102,7 +96,33 @@ class Tradeor {
 		$EAFUNC = curl_exec($ch);
 		curl_close($ch);
 		
-		unset ($ch, $cookie_string, $data_string, $data, $trade, $url, $value);
+		unset ($ch, $cookie_string, $data_string, $data, $item, $url, $pile);
+		
+		return $EAFUNC;
+	}
+	
+	public function quickSell($item){
+		//URL to view an item 
+		$url = "https://utas.fut.ea.com/ut/game/fifa13/item/".$item;
+		
+		//Set the cookie data
+		$cookie_string = $this->EASW_KEY ."; ".$this->EASF_SESS ."; ".$this->PHISHKEY;                                                                       
+		//Setup cURL HTTP request
+		$ch = curl_init($url);                              
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+		curl_setopt($ch, CURLOPT_COOKIE, $cookie_string); 
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+			'Content-Type: application/json',                                                                                
+			'x-http-method-override: DELETE',
+			$this->XSID)                                                                       
+		);
+		
+		//Contains the JSON file returned from EA
+		$EAFUNC = curl_exec($ch);
+		curl_close($ch);
+		
+		unset ($ch, $cookie_string, $url, $item);
 		
 		return $EAFUNC;
 	}
