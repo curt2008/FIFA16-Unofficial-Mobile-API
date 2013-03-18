@@ -1,11 +1,4 @@
-<?PHP
-/**
-* @llygoden
-* @author - Rob McGhee
-* @URL - www.robmcghee.com
-* @date - 25/09/12
-* @version - 2.0
-**/
+<?php
 
 class Functionor {
 
