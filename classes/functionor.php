@@ -172,6 +172,31 @@ class Functionor {
 		return $type;
 	}
 	
+	//Get an JSON array for your unassigned items
+	public function getUnAssignedItems($EASW_KEY, $EASF_SESS, $PHISHKEY, $XSID) {
+		//URL to retrieve items not assigned
+		$url = "https://utas.fut.ea.com/ut/game/fifa13/purchased/items";
+		
+		//Set the cookie data
+		$cookie_string = $EASW_KEY."; ".$EASF_SESS ."; ".$PHISHKEY;                                                                       
+		//Setup cURL HTTP request
+		$ch = curl_init($url);                                                                      
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                                                                                     
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+		curl_setopt($ch, CURLOPT_COOKIE, $cookie_string); 
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'x-http-method-override: GET', $XSID));
+		
+		//Contains the JSON file returned from EA
+		$result = curl_exec($ch);
+		$info = json_decode($result,true);
+		curl_close($ch);
+		
+		unset ($ch, $cookie_string);
+		
+		return var_dump($info);
+	}
+	
 	//pass the BIN and BIN sold/selling to work out profit
 	public function eatax($bought, $sold) {
 		return $sold * 0.95 - $bought;
