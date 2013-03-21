@@ -108,6 +108,34 @@ class Tradeor {
 		return $EAFUNC;
 	}
 	
+	public function tradepile(){
+		$url = "https://utas.fut.ea.com/ut/game/fifa13/tradepile";
+		
+		//Set the cookie data
+		$cookie_string = $this->EASW_KEY."; ".$this->EASF_SESS ."; ".$this->PHISHKEY;                                                                                       
+		//Setup cURL HTTP request
+		$ch = curl_init($url);                                                                      
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+		curl_setopt($ch, CURLOPT_COOKIE, $cookie_string); 
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'x-http-method-override: GET', $this->XSID));
+		
+		//Contains the JSON file returned from EA
+		$EAPILE = curl_exec($ch);
+		$decoded = json_decode($EAPILE, true);
+		$COUNT = count($decoded['auctionInfo']);
+		
+		curl_close($ch);
+		
+		unset ($ch, $cookie_string);
+		
+		//return array for simple access to JSON response and total results count
+		$array = array('JSON' => $decoded, 'COUNT' => $COUNT);
+		
+		return $array;
+	}
+	
 	public function quickSell($item){
 		//URL to view an item 
 		$url = "https://utas.fut.ea.com/ut/game/fifa13/item/".$item;
@@ -164,6 +192,23 @@ class Tradeor {
 		unset ($ch, $cookie_string, $data_string, $data, $url, $item, $startBid, $BIN, $duration);
 		
 		return $EAFUNC;
+	}
+	
+	public function relistItems(){
+		$tradepile = $this->tradepile();
+		foreach ($tradepile['JSON'] as $item) {
+			foreach($item as $player) {
+				if ($player['tradeState'] != "active") {
+					if ($player['tradeState'] == "expired") {
+						if($player['startingBid'] || $player['buyNowPrice'] > 0) {
+							$this->listItem($player['itemData']['id'], $player['startingBid'], $player['buyNowPrice']);
+						} 
+					} else {
+						//removed sold card :D
+					}
+				}
+			}
+		}
 	}
 }
 ?>
