@@ -200,9 +200,7 @@ class Tradeor {
 			foreach($item as $player) {
 				if ($player['tradeState'] != "active") {
 					if ($player['tradeState'] == "expired") {
-						if($player['startingBid'] || $player['buyNowPrice'] > 0) {
-							$this->listItem($player['itemData']['id'], $player['startingBid'], $player['buyNowPrice']);
-						} 
+						$this->listItem($player['itemData']['id'], $player['startingBid'], $player['buyNowPrice']);
 					} else {
 						//removed sold card :D
 					}
