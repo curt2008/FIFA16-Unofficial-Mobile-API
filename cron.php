@@ -11,7 +11,7 @@
       2. If you're using cPanel you should do the following command : php -q /home/username/public_html/cron.php  
   */
 
-  require "classes/connector.php";
+  	require "classes/connector.php";
 	require "classes/tradeor.php";
 	require "classes/eahashor.php";
 	
@@ -29,6 +29,6 @@
 		$t = new Tradeor($info['EASW_KEY'], $info['EASF_SESS'], $info['PHISHKEY'], $info['XSID']);
 		@$t->relistItems();
 	} else {
-    //failed to run file your details are incorrect
+    		//failed to run file your details are incorrect
 	}
 ?>
