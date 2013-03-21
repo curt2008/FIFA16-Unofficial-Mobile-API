@@ -1,15 +1,15 @@
 <?php
   
-  /*
-    Twitter : @CCrewe2
-    Email : curtis@budgetwebsitesolutions.co.uk
-    Skype : Paid4Upload
+  	/*
+    		Twitter : @CCrewe2
+    		Email : curtis@budgetwebsitesolutions.co.uk
+    		Skype : Paid4Upload
 
-    # Instructions #
-    1. Edit the "email", "password" and "secret" string to your information
-    2. Set up a cron job to run this file every hour,
-      2. If you're using cPanel you should do the following command : php -q /home/username/public_html/cron.php  
-  */
+    		# Instructions #
+    		1. Edit the "email", "password" and "secret" string to your information
+    		2. Set up a cron job to run this file every hour,
+      			2. cPanel command : php -q /home/username/public_html/cron.php  
+  	*/
 
   	require "classes/connector.php";
 	require "classes/tradeor.php";
