@@ -76,13 +76,14 @@ class Tradeor {
 		return $EATRADE;
 	}
 	
-	public function moveCard($item, $pile){
-		//URL to view an item 
+	public function moveCard($item, $pile = "trade"){
+		//URL to bid on trade items
 		$url = "https://utas.fut.ea.com/ut/game/fifa13/item";
-		
+
 		//JSON data to send as a POST item
-		$data = array("id" => $item, "pile" => $pile);
+		$data = array("itemData" => array(array("id" => $item, "pile" => "trade")));
 		$data_string = json_encode($data); 
+		
 		//Set the cookie data
 		$cookie_string = $this->EASW_KEY ."; ".$this->EASF_SESS ."; ".$this->PHISHKEY;                                                                       
 		//Setup cURL HTTP request
@@ -98,14 +99,14 @@ class Tradeor {
 			'Content-Length: ' . strlen($data_string),
 			$this->XSID)                                                                       
 		);
-		
+
 		//Contains the JSON file returned from EA
-		$EAFUNC = curl_exec($ch);
+		$EABID = curl_exec($ch);
 		curl_close($ch);
-		
-		unset ($ch, $cookie_string, $data_string, $data, $item, $url, $pile);
-		
-		return $EAFUNC;
+
+		unset ($ch, $cookie_string, $url, $item);
+
+		return $EABID;
 	}
 	
 	public function tradepile(){
