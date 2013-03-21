@@ -108,36 +108,6 @@ class Functionor {
 		
 		return $EACREDITS;
 	}
-	
-	//returns a JSON file with an array of items in your tradepile
-	public function tradepile($EASW_KEY, $EASF_SESS, $PHISHKEY, $XSID){
-		global $f;
-		$url = "https://utas.fut.ea.com/ut/game/fifa13/tradepile";
-		
-		//Set the cookie data
-		$cookie_string = $EASW_KEY."; ".$EASF_SESS ."; ".$PHISHKEY;                                                                                    
-		//Setup cURL HTTP request
-		$ch = curl_init($url);                                                                      
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
-		curl_setopt($ch, CURLOPT_COOKIE, $cookie_string); 
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'x-http-method-override: GET', $XSID));
-		
-		//Contains the JSON file returned from EA
-		$EAPILE = curl_exec($ch);
-		$decoded = json_decode($EAPILE);
-		$COUNT = count($decoded->auctionInfo);
-		
-		curl_close($ch);
-		
-		unset ($ch, $cookie_string);
-		
-		//return array for simple access to JSON response and total results count
-		$array = array('JSON' => $EAPILE, 'COUNT' => $COUNT);
-		
-		return $array;
-	}
 
 	//Return the type of card we have
 	public function cardtype($rating, $rare){
