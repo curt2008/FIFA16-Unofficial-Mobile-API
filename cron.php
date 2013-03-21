@@ -8,7 +8,8 @@
     		# Instructions #
     		1. Edit the "email", "password" and "secret" string to your information
     		2. Set up a cron job to run this file every hour,
-      			2. cPanel command : php -q /home/username/public_html/cron.php  
+      			-> cPanel command : php -q /home/username/public_html/cron.php  
+      			-> Plesk Command : php -q httpdocs/cron.php
   	*/
 
   	require "classes/connector.php";
