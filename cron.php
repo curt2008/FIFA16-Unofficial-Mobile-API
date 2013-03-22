@@ -18,7 +18,7 @@
 	
 	$email = "email@email.com";
 	$password = "password";
-	$secret = "secret
+	$secret = "secret";
 	
 	$eahashor = new EAHashor();
 	$hash = $eahashor->eaEncode($secret);
