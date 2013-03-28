@@ -1,10 +1,10 @@
 <?php
-	require $_SERVER['DOCUMENT_ROOT']."/secure/config.php";
-	require $_SERVER['DOCUMENT_ROOT']."/classes/connector.php";
-	require $_SERVER['DOCUMENT_ROOT']."/classes/tradeor.php";
-	require $_SERVER['DOCUMENT_ROOT']."/classes/eahashor.php";
-	require $_SERVER['DOCUMENT_ROOT']."/classes/searchor.php";
-	require $_SERVER['DOCUMENT_ROOT']."/classes/functionor.php";
+	require "./secure/config.php";
+	require "./classes/connector.php";
+	require "./classes/tradeor.php";
+	require "./classes/eahashor.php";
+	require "./classes/searchor.php";
+	require "./classes/functionor.php";
 	
 	//initialise the classes
 	$eahashor = new EAHashor();
