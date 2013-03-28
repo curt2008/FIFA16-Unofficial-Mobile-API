@@ -1,5 +1,5 @@
 <?php
-  	require $_SERVER['DOCUMENT_ROOT']."/secure/core.php";
+  	require "./secure/core.php";
 	
 	//Sample search for Dimitar Berbatov
 	$search = $s->playersearch('0','1','gold','f442','attacker','9','13','144','','','','');
