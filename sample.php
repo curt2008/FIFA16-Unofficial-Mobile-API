@@ -2,8 +2,12 @@
   	require $_SERVER['DOCUMENT_ROOT']."/secure/core.php";
 	
 	//Sample search for Dimitar Berbatov
-	$search = $s->playersearch(0,1,'gold','f442','attacker','9','13','144','','','','');
+	$search = $s->playersearch('0','1','gold','f442','attacker','9','13','144','','','','');
  	$results = json_decode($search, true);
+ 	
+ 	//Sample search for player formation cards
+ 	$search1 = $s->trainingsearch('0','1',"gold", "playerFormation", "", "", "", "");
+ 	$results1 = json_decode($search1, true);
  	
  	//Clean results for viewing pleasure
  	$EASW_KEY = explode("=",$info['EASW_KEY']);
@@ -41,6 +45,13 @@
  			echo "Buy now price : ".$results['auctionInfo'][0]['buyNowPrice']."<br />";
  			echo "Seller Name : ".$results['auctionInfo'][0]['sellerName']."<br />";
  			echo "Formation : ".$new_formation."<br />";
+ 			
+ 			//sample formation search
+ 			echo "<b>Sample Formation Search</b>:<br />";
+ 			echo "Trade ID : ".$results1['auctionInfo'][0]['tradeId']."<br />";
+ 			echo "Buy now price : ".$results1['auctionInfo'][0]['buyNowPrice']."<br />";
+ 			echo "Seller Name : ".$results1['auctionInfo'][0]['sellerName']."<br />";
+ 			echo "ResourceID : ".$results1['auctionInfo'][0]['itemData']['resourceId']."<br />";
 		?>
 	</body>
 	
