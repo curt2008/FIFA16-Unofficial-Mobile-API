@@ -39,12 +39,43 @@
  			echo "Total Coins : ". $results['credits'] ."<br />";
  			echo "Total Bid Tokens : ". $results['bidTokens']['count'] ."<br /><br />";
  			
+ 			// generate the real resource id required for the JSON request
+			$rid = $results['auctionInfo'][0]['itemData']['resourceId'];
+			$l = 0;
+			while($rid > 16777216)
+				{
+					$l++;
+					if ($l == 1)
+						{
+			 				$rid -= 1342177280;
+			 			}
+					elseif ($l == 2)
+						{
+			 				$rid -= 50331648;
+			 			}
+					else
+						{
+			 				$rid -= 16777216;
+			 			}
+			 	}
+			
+			// receive player information using the resource id
+			$playerinfo = file_get_contents("http://cdn.content.easports.com/fifa/fltOnlineAssets/2013/fut/items/web/" . $rid . ".json");
+			$playerinforesults = json_decode($playerinfo, true);
+			
  			//sample marketplace search
  			echo "<b>Sample Marketplace Search</b>:<br />";
- 			echo "Trade ID : ".$results['auctionInfo'][0]['tradeId']."<br />";
+			echo "Player Name : ".$playerinforesults['Item']['FirstName']." ".$playerinforesults['Item']['LastName']."<br />";
+ 			echo "Real Resource ID : ".$rid."<br />";
+			echo "Trade ID : ".$results['auctionInfo'][0]['tradeId']."<br />";
  			echo "Buy now price : ".$results['auctionInfo'][0]['buyNowPrice']."<br />";
  			echo "Seller Name : ".$results['auctionInfo'][0]['sellerName']."<br />";
- 			echo "Formation : ".$new_formation."<br />";
+			echo "Rating: " . $results['auctionInfo'][0]['itemData']['rating'] ."<br />";
+			echo "Rare Flag: " . $results['auctionInfo'][0]['itemData']['rareflag'] ."<br />";
+			echo "Starting Bid: ". $results['auctionInfo'][0]['startingBid'] ."<br />";
+			echo "Current Bid: ". $results['auctionInfo'][0]['currentBid'] ."<br />";
+			echo "BIN Price: ". $results['auctionInfo'][0]['buyNowPrice'] ."<br />";
+ 			echo "Formation : ".$new_formation."<br /><br />";
  			
  			//sample formation search
  			echo "<b>Sample Formation Search</b>:<br />";
