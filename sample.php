@@ -68,7 +68,6 @@
 			echo "Player Name : ".$playerinforesults['Item']['FirstName']." ".$playerinforesults['Item']['LastName']."<br />";
  			echo "Real Resource ID : ".$rid."<br />";
 			echo "Trade ID : ".$results['auctionInfo'][0]['tradeId']."<br />";
- 			echo "Buy now price : ".$results['auctionInfo'][0]['buyNowPrice']."<br />";
  			echo "Seller Name : ".$results['auctionInfo'][0]['sellerName']."<br />";
 			echo "Rating: " . $results['auctionInfo'][0]['itemData']['rating'] ."<br />";
 			echo "Rare Flag: " . $results['auctionInfo'][0]['itemData']['rareflag'] ."<br />";
