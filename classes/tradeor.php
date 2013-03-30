@@ -167,7 +167,7 @@ class Tradeor {
 		$url = "https://utas.fut.ea.com/ut/game/fifa13/auctionhouse";
 		
 		//JSON data to send as a POST item
-		$data = array("duration" => $duration, "id" => $item, "buyNowPrice" => $BIN, "startingBid" => $startBid);
+		$data = array('itemData' => array('id' => $item), 'buyNowPrice' => $BIN, 'duration' => $duration, 'startingBid' => $startBid);
 		$data_string = json_encode($data); 
 		//Set the cookie data
 		$cookie_string = $this->EASW_KEY ."; ".$this->EASF_SESS ."; ".$this->PHISHKEY;                                                                       
