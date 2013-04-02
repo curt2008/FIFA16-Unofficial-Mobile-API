@@ -194,31 +194,44 @@ class Tradeor {
 		return $EAFUNC;
 	}
 	
-	public function relistItems(){
-		$tradepile = $this->tradepile();
-		foreach ($tradepile['JSON'] as $item) {
-			foreach($item as $player) {
-				if ($player['tradeState'] != "active") {
-					if ($player['tradeState'] == "expired") {
-						$this->listItem($player['itemData']['id'], $player['startingBid'], $player['buyNowPrice']);
-					} else {
-						//removed sold card :D
-					}
-				}
-			}
-		}
+	public function clearfrompile($item){
+		//URL to view an item 
+		$url = "https://utas.fut.ea.com/ut/game/fifa13/trade/".$item;
+		
+		//Set the cookie data
+		$cookie_string = $this->EASW_KEY ."; ".$this->EASF_SESS ."; ".$this->PHISHKEY;                                                                       
+		//Setup cURL HTTP request
+		$ch = curl_init($url);                              
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+		curl_setopt($ch, CURLOPT_COOKIE, $cookie_string); 
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+			'Content-Type: application/json',                                                                                
+			'x-http-method-override: DELETE',
+			$this->XSID)                                                                       
+		);
+		
+		//Contains the JSON file returned from EA
+		$EAFUNC = curl_exec($ch);
+		curl_close($ch);
+		
+		unset ($ch, $cookie_string, $url, $item);
+		
+		return $EAFUNC;
 	}
 	
-	public function removeSold() {
+	public function relistItems(){
 		$tradepile = $this->tradepile();
-		$list = $tradepile['JSON'];
-		foreach($list['auctionInfo'] as $player) {
-			if ($player['tradeState'] != "active") {
-				if ($player['tradeState'] != "expired") {
-					//fake listing to remove item
-					$this->listItem($player['itemData']['id'],1000000, 900000, 3600);
+		$i = 0;
+		while ($i < $tradepile['COUNT']) {
+				if ($tradepile['JSON']['auctionInfo'][$i]['tradeState'] != "active") {
+					if ($tradepile['JSON']['auctionInfo'][$i]['tradeState'] == "expired") {
+						$this->listItem($tradepile['JSON']['auctionInfo'][$i]['itemData']['id'], $tradepile['JSON']['auctionInfo'][$i]['startingBid'], $tradepile['JSON']['auctionInfo'][$i]['buyNowPrice']);
+					} else {
+						$this->clearfrompile($tradepile['JSON']['auctionInfo'][$i]['tradeId']);
+					}
 				}
-			}
+			$i++;
 		}
 	}
 }
