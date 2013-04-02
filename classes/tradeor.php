@@ -208,5 +208,18 @@ class Tradeor {
 			}
 		}
 	}
+	
+	public function removeSold() {
+		$tradepile = $this->tradepile();
+		$list = $tradepile['JSON'];
+		foreach($list['auctionInfo'] as $player) {
+			if ($player['tradeState'] != "active") {
+				if ($player['tradeState'] != "expired") {
+					//fake listing to remove item
+					$this->listItem($player['itemData']['id'],1000000, 900000, 3600);
+				}
+			}
+		}
+	}
 }
 ?>
