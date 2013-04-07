@@ -194,9 +194,9 @@ class Tradeor {
 		return $EAFUNC;
 	}
 	
-	public function clearfrompile($item){
+	public function clearfrompile($trade){
 		//URL to view an item 
-		$url = "https://utas.fut.ea.com/ut/game/fifa13/trade/".$item;
+		$url = "https://utas.fut.ea.com/ut/game/fifa13/trade/".$trade;
 		
 		//Set the cookie data
 		$cookie_string = $this->EASW_KEY ."; ".$this->EASF_SESS ."; ".$this->PHISHKEY;                                                                       
