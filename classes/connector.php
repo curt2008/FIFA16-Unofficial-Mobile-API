@@ -23,8 +23,8 @@ class Connector {
 		$time = time();
 
 		//The first 2 EA URLs we need to call in this order
-		$login	= "https://www.ea.com/uk/football/services/authenticate/login";
-		$shard  = "http://www.ea.com/p/fut/a/card/l/". $ulocal ."/s/p/ut/shards?timestamp=". $time;
+		$login	= "https://www.easports.com/uk/fifa/football-club/services/authenticate/login";
+		$shard  = "http://www.easports.com/p/fut/a/card/l/". $ulocal ."/s/p/ut/shards?timestamp=". $time;
 		
 		
 		//POST data to send
@@ -38,7 +38,7 @@ class Connector {
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
 			'Content-Type: application/x-www-form-urlencoded',                                                                                
 			'Content-Length: ' . strlen($data_string),
-			'Referer: http://www.ea.com/uk/football/')                                                                   
+			'Referer: http://www.easports.com/uk/football/')                                                                   
 		);                                                                                                                   
 
 		$response = curl_exec($ch);
@@ -49,11 +49,11 @@ class Connector {
 		$r = explode("\r\n", $h);
 		
 		//EASW Key
-		$s = explode(":", $r[10]);
+		$s = explode(":", $r[6]);
 		$t = explode(";", $s[1]);
 		$EASW_KEY = $t[0]; 
 		//Session Key
-		$m = explode(":", $r[11]);
+		$m = explode(":", $r[7]);
 		$n = explode(";", $m[1]);
 		$EASF_SESS = $n[0];
 		//nuc
@@ -93,9 +93,9 @@ class Connector {
 		unset($EAACCOUNT, $d, $ch, $cookie_string);
 		
 		//Having gotten the data from the SHARD URL here are the 3 remaining EA URLs we will use
-		$account= "http://www.ea.com/p/fut/a/" . $machine . "/l/". $ulocal ."/s/p/ut/game/fifa13/user/accountinfo?timestamp=".$time;
-		$auth	= "http://www.ea.com/p/fut/a/" . $machine . "/l/". $ulocal ."/s/p/ut/auth";
-		$quest	= "http://www.ea.com/p/fut/a/" . $machine . "/l/". $ulocal ."/s/p/ut/game/fifa13/phishing/validate";
+		$account= "http://www.easports.com/p/fut/a/" . $machine . "/l/". $ulocal ."/s/p/ut/game/fifa13/user/accountinfo?timestamp=".$time;
+		$auth	= "http://www.easports.com/p/fut/a/" . $machine . "/l/". $ulocal ."/s/p/ut/auth";
+		$quest	= "http://www.easports.com/p/fut/a/" . $machine . "/l/". $ulocal ."/s/p/ut/game/fifa13/phishing/validate";
 		
 		
 		//Cookie Data includes the two keys from above
@@ -179,7 +179,7 @@ class Connector {
 		$r = explode("\r\n", $EAVALIDATE);
 		
 		//Phishing Key
-		$s = explode(":", $r[11]);
+		$s = explode(":", $r[6]);
 		$t = explode(";", $s[1]);
 		$PHISHKEY = $t[0];
 		//Display the Phishing Key 
