@@ -10,7 +10,7 @@
  	$results1 = json_decode($search1, true);
 	
 	//Sample search for development card
- 	$search2 = $s->developmentsearch('0','1',"gold", "contract", "", "", "", "250");
+ 	$search2 = $s->developmentsearch('0','1',"gold", "contract", "", "", "", ""); // removed maxBIN of 250 to remove undefined offset errors.
  	$results2 = json_decode($search2, true);
  	
  	//Clean results for viewing pleasure
