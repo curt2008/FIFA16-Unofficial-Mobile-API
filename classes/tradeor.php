@@ -224,12 +224,13 @@ class Tradeor {
 		$tradepile = $this->tradepile();
 		$i = 0;
 		while ($i < $tradepile['COUNT']) {
-				if ($tradepile['JSON']['auctionInfo'][$i]['tradeState'] != "active") {
-					if ($tradepile['JSON']['auctionInfo'][$i]['tradeState'] == "expired") {
-						$this->listItem($tradepile['JSON']['auctionInfo'][$i]['itemData']['id'], $tradepile['JSON']['auctionInfo'][$i]['startingBid'], $tradepile['JSON']['auctionInfo'][$i]['buyNowPrice']);
-					} else {
-						$this->clearfrompile($tradepile['JSON']['auctionInfo'][$i]['tradeId']);
-					}
+				switch($tradepile['JSON']['auctionInfo'][$i]['tradeState']) {
+					case "expired":
+						$this->listItem($tradepile['JSON']['auctionInfo'][$i]['itemData']['id'], $tradepile['JSON']['auctionInfo'][$i]['startingBid'], $tradepile['JSON']['auctionInfo'][$i]['buyNowPrice']);	
+					break;
+					default:
+						$this->clearfrompile($tradepile['JSON']['auctionInfo'][$i]['tradeId']);	
+					break;
 				}
 			$i++;
 		}
