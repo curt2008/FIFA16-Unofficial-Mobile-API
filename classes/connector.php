@@ -23,7 +23,7 @@ class Connector {
 		$time = time();
 
 		//The first 2 EA URLs we need to call in this order
-		$login	= "https://www.easports.com/uk/fifa/football-club/services/authenticate/login";
+		$login = "https://www.easports.com/fifa/football-club/services/authenticate/login";
 		$shard  = "http://www.easports.com/p/fut/a/card/l/". $ulocal ."/s/p/ut/shards?timestamp=". $time;
 		
 		
