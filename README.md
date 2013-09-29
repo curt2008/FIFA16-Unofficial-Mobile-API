@@ -1,9 +1,8 @@
-![Fifa Ultimate Team 13](http://www.fifamonster.com/wp-content/uploads/2012/05/Fifa-13-Improvements.jpg)
+![Fifa Ultimate Team 13](http://officialrtv.com/wp-content/uploads/2013/07/FIFA14logoTEXTrgb.jpg)
 
-# Fifa Ultimate Team 13 PHP Application
+# Fifa Ultimate Team 14 PHP Application
 
-After noticing an amazing wrapper created by [Mousey](https://github.com/mousey/FIFA13-Ultimate-Team-Search/)
-i decided to grab some of his code and use it for this project.
+The first public release for PHP connection classes for FIFA 14
 
 # How to use this Application
 
