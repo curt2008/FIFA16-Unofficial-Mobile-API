@@ -8,3 +8,5 @@ The first public release for PHP connection classes for FIFA 14
 
 * Edit /secure/config.php with your EA Details
 * Run/view the sample.php file provided for testing purposes
+
+Connection credits go to : @ipsq
