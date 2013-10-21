@@ -1,9 +1,5 @@
-FIFA14-Ultimate-Team-PHP-App
+FIFA14-Unofficial-API
 =================
-
-## How to use these classes                                             
-[Setting up](#starting)  
-
 
 ### Starting
 ```php
