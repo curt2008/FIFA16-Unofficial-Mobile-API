@@ -1,0 +1,105 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>Fifa14-ultimate-team-php-app</title>
+  <meta name="description" content="Ultimate team application based completely from PHP">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Fifa14-ultimate-team-php-app</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Ultimate team application based completely from PHP</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/curt2008/Fifa14-Ultimate-Team-PHP-App/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/curt2008/Fifa14-Ultimate-Team-PHP-App/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/curt2008/Fifa14-Ultimate-Team-PHP-App" class="code">View Fifa14-ultimate-team-php-app on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>
+<a name="fifa14-ultimate-team-php-app" class="anchor" href="#fifa14-ultimate-team-php-app"><span class="octicon octicon-link"></span></a>FIFA14-Ultimate-Team-PHP-App</h1>
+
+<h2>
+<a name="how-to-use-these-classes" class="anchor" href="#how-to-use-these-classes"><span class="octicon octicon-link"></span></a>How to use these classes</h2>
+
+<p><a href="#starting">Setting up</a>  </p>
+
+<h3>
+<a name="starting" class="anchor" href="#starting"><span class="octicon octicon-link"></span></a>Starting</h3>
+
+<div class="highlight highlight-php"><pre><span class="nb">define</span><span class="p">(</span><span class="s2">"CLASSES"</span><span class="p">,</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'DOCUMENT_ROOT'</span><span class="p">]</span><span class="o">.</span><span class="s2">"/classes"</span><span class="p">);</span>
+<span class="k">require</span> <span class="nx">CLASSES</span><span class="o">.</span><span class="s2">"/Guzzle/guzzle.phar"</span><span class="p">;</span>
+<span class="k">require</span> <span class="nx">CLASSES</span><span class="o">.</span><span class="s2">"/connector.php"</span><span class="p">;</span>
+<span class="k">require</span> <span class="nx">CLASSES</span><span class="o">.</span><span class="s2">"/eahashor.php"</span><span class="p">;</span>
+<span class="k">require</span> <span class="nx">CLASSES</span><span class="o">.</span><span class="s2">"/searchor.php"</span><span class="p">;</span>
+
+<span class="nv">$loginDetails</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"username"</span> <span class="o">=&gt;</span> <span class="nv">$email</span><span class="p">,</span>
+    <span class="s2">"password"</span> <span class="o">=&gt;</span> <span class="nv">$password</span><span class="p">,</span>
+    <span class="s2">"hash"</span> <span class="o">=&gt;</span> <span class="nv">$hash</span><span class="p">,</span>
+    <span class="s2">"platform"</span> <span class="o">=&gt;</span> <span class="s2">"xbox360"</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="nv">$con</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Connector</span><span class="p">(</span><span class="nv">$loginDetails</span><span class="p">);</span>
+<span class="nv">$connection</span> <span class="o">=</span> <span class="nv">$con</span><span class="o">-&gt;</span><span class="na">connect</span><span class="p">();</span>
+</pre></div>
+
+<p>This will return the session and token information used to make Search and Bid calls. It will be returned in an array with the following layout:</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$loginResponse</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"nucleusId"</span> <span class="o">=&gt;</span> <span class="nv">$nucleusId</span><span class="p">,</span>
+    <span class="s2">"userAccounts"</span> <span class="o">=&gt;</span> <span class="nv">$userAccounts</span><span class="p">,</span>
+    <span class="s2">"sessionId"</span> <span class="o">=&gt;</span> <span class="nv">$sessionId</span><span class="p">,</span>
+    <span class="s2">"phishingToken"</span> <span class="o">=&gt;</span> <span class="nv">$phishingToken</span><span class="p">,</span>
+    <span class="s2">"cookies"</span> <span class="o">=&gt;</span> <span class="nv">$cookiePlugin</span><span class="p">,</span>
+    <span class="s2">"platform"</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_loginDetails</span><span class="p">[</span><span class="s1">'platform'</span><span class="p">]</span>
+<span class="p">);</span>
+</pre></div>
+
+<p>These can be used by grabbing the array key like so: </p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$nucID</span> <span class="o">=</span> <span class="nv">$loginResponse</span><span class="p">[</span><span class="s1">'nucleusId'</span><span class="p">];</span> 
+</pre></div>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/curt2008" class="avatar"><img src="https://2.gravatar.com/avatar/4ac23fd80a91b74c165ab2fd91944b5c?d=https%3A%2F%2Fidenticons.github.com%2F5bcfa9f22688ce75538d47d6feeaeaf4.png&amp;s=30" width="48" height="48"/></a> <a href="https://github.com/curt2008">curt2008</a> maintains <a href="https://github.com/curt2008/Fifa14-Ultimate-Team-PHP-App">Fifa14-ultimate-team-php-app</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/curt2008/Fifa14-Ultimate-Team-PHP-App/tarball/master" class="tar">tar</a><a href="https://github.com/curt2008/Fifa14-Ultimate-Team-PHP-App/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
