@@ -1,11 +1,44 @@
-![Fifa Ultimate Team 13](http://officialrtv.com/wp-content/uploads/2013/07/FIFA14logoTEXTrgb.jpg)
+FIFA14-Ultimate-Team-PHP-App
+=================
 
-# Fifa Ultimate Team 14 PHP Application
+## How to use these classes                                             
+[Setting up](#starting)  
 
-The first public release for PHP connection classes for FIFA 14 - Connection credits go to : @ipsq
 
-# How to use this Application
+### Starting
+```php
+define("CLASSES", $_SERVER['DOCUMENT_ROOT']."/classes");
+require CLASSES."/Guzzle/guzzle.phar";
+require CLASSES."/connector.php";
+require CLASSES."/eahashor.php";
+require CLASSES."/searchor.php";
 
-* Edit /secure/config.php with your EA Details
-* Run/view the sample.php file provided for testing purposes
+$loginDetails = array(
+    "username" => $email,
+    "password" => $password,
+    "hash" => $hash,
+    "platform" => "xbox360",
+);
+
+$con = new Connector($loginDetails);
+$connection = $con->connect();
+```
+
+This will return the session and token information used to make Search and Bid calls. It will be returned in an array with the following layout:
+
+```php
+$loginResponse = array(
+    "nucleusId" => $nucleusId,
+    "userAccounts" => $userAccounts,
+    "sessionId" => $sessionId,
+    "phishingToken" => $phishingToken,
+    "cookies" => $cookiePlugin,
+    "platform" => $this->_loginDetails['platform']
+);
+```
+
+These can be used by grabbing the array key like so: 
+```php
+$nucID = $loginResponse['nucleusId']; 
+```
 
