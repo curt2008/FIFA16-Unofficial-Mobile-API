@@ -20,6 +20,8 @@ $con = new Connector($loginDetails);
 $connection = $con->connect();
 ```
 
+**Note**: `hash` is md5 of the answer of the security question.
+
 This will return the session and token information used to make Search and Bid calls. It will be returned in an array with the following layout:
 
 ```php
