@@ -2,7 +2,7 @@ FIFA14-Unofficial-API
 =================
 
 ### Hire me
-If you're interested in a fully functioning Autobuyer or Coin selling website then be sure to drop me an email at curtis@budgetwebsitesolutions.co.uk.
+If you're interested in a fully functioning Autobuyer or Coin selling website then be sure to drop me an email at curtis@budgetwebsitesolutions.co.uk or add me on skype : bws-curtis
 
 ### Starting
 ```php
