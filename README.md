@@ -1,6 +1,9 @@
 FIFA14-Unofficial-API
 =================
 
+### Hire me
+If you're interested in a fully functioning Autobuyer or Coin selling website then be sure to drop me an email at curtis@budgetwebsitesolutions.co.uk.
+
 ### Starting
 ```php
 define("CLASSES", $_SERVER['DOCUMENT_ROOT']."/classes");
