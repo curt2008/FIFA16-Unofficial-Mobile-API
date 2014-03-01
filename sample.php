@@ -2,7 +2,7 @@
 	$datos = array(
 		"username" => "email@email.com",
         "password" => "password",
-        "platform" => "360", // 360, pc, ps3
+        "platform" => "xbox360", // xbox360, pc, ps3
         "hash" => "md5hash",  // answer in hash
 	);
 	
