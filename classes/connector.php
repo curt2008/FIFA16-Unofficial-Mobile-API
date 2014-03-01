@@ -84,7 +84,7 @@
         		$request = $this->_client->get($url . time());
         		$request->addHeader('Easw-Session-Data-Nucleus-Id', $nucleusId);
         		$request->addHeader('X-UT-Embed-Error', 'true');
-        		$request->addHeader('X-UT-Route', 'https://utas.fut.ea.com');
+        		$request->addHeader('X-UT-Route', $this->_loginDetails['route']);
         		$request->addHeader('X-Requested-With', 'XMLHttpRequest');
         		$request->setHeader('Accept', 'application/json, text/javascript');
         		$request->setHeader('Accept-Language', 'en-US,en;q=0.8');
