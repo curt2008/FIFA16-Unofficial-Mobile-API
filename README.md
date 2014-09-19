@@ -1,8 +1,8 @@
-FIFA14-Unofficial-API
+FIFA15-Unofficial-API
 =================
 
 ### Hire me
-If you're interested in a fully functioning FIFA 14 Autobuyer or FIFA 14 Coin selling website then be sure to drop me an email at curtis@budgetwebsitesolutions.co.uk or add me on skype : bws-curtis
+If you're interested in a fully functioning FIFA 15 Autobuyer or FIFA 15 Coin selling website then be sure to drop me an email at curtis@budgetwebsitesolutions.co.uk or add me on skype : bws-curtis
 
 ### Starting
 ```php
@@ -15,8 +15,8 @@ require CLASSES."/searchor.php";
 $loginDetails = array(
     "username" => $email,
     "password" => $password,
-    "hash" => $hash,
-    "platform" => "xbox360",
+    "hash" => $hash, //must be a value hashed using EAHashor
+    "platform" => "XBOX", //XBOX or PS
 );
 
 $con = new Connector($loginDetails);
