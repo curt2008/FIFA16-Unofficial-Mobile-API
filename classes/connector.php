@@ -21,9 +21,9 @@
     			"phishing" => "https://www.easports.com/iframe/fut15/p/ut/game/fifa14/phishing/question?_="
     		);
 
-    		public function __construct($loginDetails, $cookieFile = tmpfile()) {
+    		public function __construct($loginDetails, null) {
         		$this->_loginDetails = $loginDetails;
-        		$this->_cookieFile = $cookieFile;
+        		$this->_cookieFile = tmpfile();
     		}
 
     		public function Connect() {
