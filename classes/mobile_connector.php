@@ -40,21 +40,13 @@
     		}
     		
     		public function connect($errors = 0) {
-        		switch($this->_loginDetails['proxy']['enabled']) {
-    				case true:
-    					$settings = array('curl.options' => array('CURLOPT_PROXY' => $this->_loginDetails['proxy']['ip'].':'.$this->_loginDetails['proxy']['port'], 'CURLOPT_PROXYTYPE' => 'CURLPROXY_SOCKS5'));
-    				break;
-    				case false:
-    					$settings = array();
-    				break;
-    			}
-    			$client = new Client(null, $settings);
+    			$client = new Client(null);
         		if(!file_exists($this->_cookieFile)) {
         			file_put_contents($this->_cookieFile, "");
         		}
         		$cookiePlugin = new CookiePlugin(new FileCookieJar($this->_cookieFile));
         		$client->addSubscriber($cookiePlugin);
-        		$client->setUserAgent("'User-Agent', 'Mozilla/5.0 (Linux; U; Android 4.2.2; de-de; GT-I9195 Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'");
+        		$client->setUserAgent('User-Agent', 'Mozilla/5.0 (Linux; U; Android 4.2.2; de-de; GT-I9195 Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30');
         		$this->_client = $client;
         		try {
             			$url = $this->getLoginUrl();
