@@ -23,6 +23,8 @@
     		);
     		
     		protected $clientSecret = 'kbK225TFcqQZqUv9nyQujckCMaPSjqqyNTRUNPUdQWkvjfRGXTGtwuY8d2dVELBHFwGRbbFKNhwAHgET';
+    		
+    		const RETRY_ON_SERVER_DOWN = 3;
 		
 		public function __construct($loginDetails) {
         		$this->_loginDetails = $loginDetails;
@@ -69,9 +71,9 @@
             			throw $e;
             			// server down, gotta retry
             			if ($errors < static::RETRY_ON_SERVER_DOWN && preg_match("/service unavailable/mi", $e->getMessage())) {
-                				$this->connect(++$errors);
-                			} else {
-                				throw new \Exception('Could not connect to the mobile endpoint.');
+                			$this->connect(++$errors);
+                		} else {
+                			throw new \Exception('Could not connect to the mobile endpoint.');
             			}
         		}
         		return array(
