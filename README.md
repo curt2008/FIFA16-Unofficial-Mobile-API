@@ -1,8 +1,11 @@
 FIFA15-Unofficial-API
 =================
 
+### Functionality
+This system no longer works as of the most recent updates by EA.
+
 ### Hire me
-If you're interested in a fully functioning FIFA 15 Autobuyer or FIFA 15 Coin selling website then be sure to drop me an email at admin@curtiscrewe.co.uk or add me on skype : bws-curtis
+If you're interested in any website development work then be sure to drop me an email at admin@curtiscrewe.co.uk or add me on skype : bws-curtis
 
 ### Starting
 ```php
