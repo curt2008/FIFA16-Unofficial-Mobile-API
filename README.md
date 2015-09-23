@@ -1,11 +1,8 @@
-FIFA15-Unofficial-API
+FIFA16-Unofficial-Mobile-API
 =================
 
-### Functionality
-This system no longer works as of the most recent updates by EA.
-
 ### Hire me
-If you're interested in any website development work then be sure to drop me an email at admin@curtiscrewe.co.uk or add me on skype : bws-curtis
+If you're interested in any website development work then be sure to drop me an email at curtis_199513@hotmail.co.uk or add me on skype : bws-curtis
 
 ### Starting
 ```php
@@ -18,11 +15,11 @@ require CLASSES."/searchor.php";
 $loginDetails = array(
     "username" => $email,
     "password" => $password,
-    "hash" => $hash, //must be a value hashed using EAHashor
+    "hash" => $hash,
     "platform" => "XBOX", //XBOX or PS
 );
 
-$con = new Connector($loginDetails);
+$con = new Mobile_Connector($loginDetails);
 $connection = $con->connect();
 ```
 
