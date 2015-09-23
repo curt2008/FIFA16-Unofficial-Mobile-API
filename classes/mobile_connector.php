@@ -11,27 +11,27 @@
 		private $_loginDetails = array();
     		
    		protected $urls = array(
-        		'login'         => 'https://accounts.ea.com/connect/auth?client_id=FIFA-15-MOBILE-COMPANION&response_type=code&display=mobile/login&scope=basic.identity+offline+signin&locale=en_GB&prompt=login',
-        		'answer'        => 'https://accounts.ea.com/connect/token?grant_type=authorization_code&code=%s&client_id=FIFA-15-MOBILE-COMPANION&client_secret=%s',
+        		'login'         => 'https://accounts.ea.com/connect/auth?client_id=FIFA-16-MOBILE-COMPANION&response_type=code&display=mobile/login&scope=basic.identity+offline+signin&locale=en_US&prompt=login',
+        		'answer'        => 'https://accounts.ea.com/connect/token?grant_type=authorization_code&code=%s&client_id=FIFA-16-MOBILE-COMPANION&client_secret=%s',
         		'gateway'       => 'https://gateway.ea.com/proxy/identity/pids/me',
         		'auth'          => 'https://accounts.ea.com/connect/auth?client_id=FOS-SERVER&redirect_uri=nucleus:rest&response_type=code&access_token=%s',
-        		'sid'           => 'https://pas.mob.v7.easfc.ea.com:8095/pow/auth?timestamp=',
-        		'utasNucId'     => '/ut/game/fifa15/user/accountinfo?_=',
+        		'sid'           => 'https://pas.mob.v11.easfc.ea.com:8095/pow/auth?timestamp=',
+        		'utasNucId'     => '/ut/game/fifa16/user/accountinfo?_=',
         		'utasAuth'      => '/ut/auth?timestamp=',
-        		'utasQuestion'  => '/ut/game/fifa15/phishing/validate?answer=%s&timestamp=',
-        		'utasWatchlist' => '/ut/game/fifa15/watchlist',
+        		'utasQuestion'  => '/ut/game/fifa16/phishing/validate?answer=%s&timestamp=',
+        		'utasWatchlist' => '/ut/game/fifa16/watchlist',
     		);
     		
-    		protected $clientSecret = 'kbK225TFcqQZqUv9nyQujckCMaPSjqqyNTRUNPUdQWkvjfRGXTGtwuY8d2dVELBHFwGRbbFKNhwAHgET';
+    		protected $clientSecret = 'KrEoFK9ssvXKRWnTMgAu1OAMn7Y37ueUh1Vy7dIk2earFDUDABCvZuNIidYxxNbhwbj3y8pq6pSf8zBW';
     		
     		const RETRY_ON_SERVER_DOWN = 3;
 		
 		public function __construct($loginDetails) {
         		$this->_loginDetails = $loginDetails;
-        		$this->_cookieFile = tempnam(sys_get_temp_dir(), 'FUT15');
+        		$this->_cookieFile = tempnam(sys_get_temp_dir(), 'FUT16');
         		switch($this->_loginDetails['platform']) {
         			case "XBOX":
-        				$this->_sessionDetails['route'] = 'https://utas.fut.ea.com:443';
+        				$this->_sessionDetails['route'] = 'https://utas.s3.fut.ea.com:443';
         			break;
         			case "PS":
         				$this->_sessionDetails['route'] = 'https://utas.s2.fut.ea.com:443';
@@ -88,8 +88,7 @@
     			$request = $this->_client->post($url, array(), array(
             			"email" => $this->_loginDetails['username'],
             			"password" => $this->_loginDetails['password'],
-            			"_rememberMe" => "on",
-            			"rememberMe" => "on",
+            			"gCaptchaResponse" => "",
             			"_eventId" => "submit"
         		));
         		$request->addHeader('x-wap-profile', 'http://wap.samsungmobile.com/uaprof/GT-I9195.xml');
@@ -130,16 +129,16 @@
 		private function getSid() {
         		$data_array = array(
             			'isReadOnly' => true,
-                			'sku' => 'FUT15AND',
-                			'clientVersion' 	=> 11,
-                			'locale' => 'en-GB',
-                			'method'=> 'authcode',
-                			'priorityLevel' => 4,
-                			'identification'	 => array(
+                		'sku' => 'FUT16IOS',
+                		'clientVersion' => 15,
+                		'locale' => 'en-GB',
+                		'method'=> 'authcode',
+                		'priorityLevel' => 4,
+                		'identification'	 => array(
                     			'authCode' => $this->authCode,
                     			'redirectUrl' => 'nucleus:rest'
-                			)
-                		);
+                		)
+                	);
         		$data_string = json_encode($data_array);
         		$request = $this->_client->post($this->urls['sid'], array(), $data_string);
         		$request->addHeader('x-wap-profile', 'http://wap.samsungmobile.com/uaprof/GT-I9195.xml');
@@ -166,17 +165,17 @@
     		private function utasAuth() {
         		$data_array = array(
             			'isReadOnly' => true,
-                			'sku' => 'FUT15AND',
-                			'clientVersion' 	=> 11,
-                			'locale' => 'en-GB',
-                			'method'=> 'authcode',
-                			'priorityLevel' => 4,
-                			'identification'	 => array(
+                		'sku' => 'FUT16IOS',
+                		'clientVersion' => 15,
+                		'locale' => 'en-GB',
+                		'method'=> 'authcode',
+                		'priorityLevel' => 4,
+                		'identification'	 => array(
                     			'authCode' => $this->authCode,
                     			'redirectUrl' => 'nucleus:rest'
-                			),
-                			'nucleusPersonaId' => $this->nucId
-                		);
+                		),
+                		'nucleusPersonaId' => $this->nucId
+                	);
         		$data_string = json_encode($data_array);
         		$request = $this->_client->post($this->_sessionDetails['route'].$this->urls['utasAuth'], array(), $data_string);
         		$request->addHeader('x-wap-profile', 'http://wap.samsungmobile.com/uaprof/GT-I9195.xml');
